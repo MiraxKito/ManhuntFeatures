@@ -4,6 +4,8 @@ Server-side Manhunt utilities for Minecraft Java Edition 1.16.1 and newer suppor
 
 Manhunt Features adds hunter and runner roles, a named tracking compass, separate resettable Manhunt dimensions, player selectors, and automatic compass recovery for hunters.
 
+<img width="1664" height="928" alt="1785593624" src="https://github.com/user-attachments/assets/e70c4a48-17a7-4091-9785-5574cd21648c" />
+
 ## Features
 
 - Multiple hunters and runners.

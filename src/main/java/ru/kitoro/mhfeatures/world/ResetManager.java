@@ -47,7 +47,7 @@ public final class ResetManager {
         if (resetting) return;
         resetting = true;
         long seed = worlds.chooseSeed(suppliedSeed);
-        plugin.broadcast("Начат сброс мэнхант миров. Игроки будут перенесены, затем сервер перезапустится для безопасной генерации.");
+        plugin.broadcast("Manhunt world reset started. Players will be moved, then the server must restart for safe generation.");
         try {
             Files.createDirectories(plugin.getDataFolder().toPath());
             Files.write(pendingFile, Long.toString(seed).getBytes(StandardCharsets.UTF_8));
@@ -56,12 +56,12 @@ public final class ResetManager {
                 plugin.getCompassManager().removeAll(player);
                 clearInventory(player);
             }
-            plugin.broadcast("Заявка на сброс сохранена. Выполните обычный restart сервера, чтобы удалить и заново сгенерировать миры без зависания сервера.");
+            plugin.broadcast("Reset request saved. Perform a normal server restart to remove and regenerate the worlds without freezing the server.");
             resetting = false;
         } catch (IOException exception) {
             resetting = false;
             plugin.getLogger().severe("Could not schedule reset: " + exception.getMessage());
-            plugin.broadcast("Сброс не запланирован. Подробности находятся в консоли сервера.");
+            plugin.broadcast("Reset was not scheduled. Check the server console for details.");
         }
     }
 

@@ -19,7 +19,7 @@ public final class ManhuntCompass {
     public ItemStack create() {
         ItemStack item = new ItemStack(Material.COMPASS);
         ItemMeta meta = item.getItemMeta();
-        meta.setDisplayName(plugin.color(plugin.getConfig().getString("compass.name", "&6Мэнхант-компас")));
+        meta.setDisplayName(plugin.color(plugin.getConfig().getString("compass.name", "&6Manhunt Compass")));
         meta.getPersistentDataContainer().set(key, PersistentDataType.BYTE, (byte) 1);
         item.setItemMeta(meta);
         return item;

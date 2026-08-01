@@ -21,10 +21,10 @@ public final class TabManager {
         String prefix;
         switch (role) {
             case HUNTER:
-                prefix = plugin.getConfig().getString("tab.hunter-prefix", "&c[ОХОТНИК] &f");
+                prefix = plugin.getConfig().getString("tab.hunter-prefix", "&c[HUNTER] &f");
                 break;
             case RUNNER:
-                prefix = plugin.getConfig().getString("tab.runner-prefix", "&a[БЕГУЩИЙ] &f");
+                prefix = plugin.getConfig().getString("tab.runner-prefix", "&a[RUNNER] &f");
                 break;
             default:
                 prefix = plugin.getConfig().getString("tab.none-prefix", "&7");

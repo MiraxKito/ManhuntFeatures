@@ -25,7 +25,7 @@ public final class MHCommand implements CommandExecutor, TabCompleter {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (args.length == 0) { help(sender); return true; }
         if (plugin.getResetManager().isResetting() && plugin.getConfig().getBoolean("reset.block-all-plugin-commands", true)) {
-            sender.sendMessage(plugin.message("messages.prefix") + "Команды заблокированы во время сброса.");
+            sender.sendMessage(plugin.message("messages.prefix") + "Commands are locked during reset.");
             return true;
         }
         switch (args[0].toLowerCase(Locale.ROOT)) {
@@ -43,19 +43,19 @@ public final class MHCommand implements CommandExecutor, TabCompleter {
 
     private void role(CommandSender sender, String[] args) {
         if (!sender.hasPermission("mhfeatures.admin.role")) { deny(sender); return; }
-        if (args.length < 3) { sender.sendMessage("Использование: /mhfeatures role <player|selector> <hunter|runner|clear>"); return; }
+        if (args.length < 3) { sender.sendMessage("Usage: /mhfeatures role <player|selector> <hunter|runner|clear>"); return; }
         Role role = Role.parse(args[2]);
-        if (role == null) { sender.sendMessage("Роль должна быть hunter, runner или clear."); return; }
+        if (role == null) { sender.sendMessage("Role must be hunter, runner, or clear."); return; }
         List<Player> targets = select(sender, args[1]);
-        if (targets.isEmpty()) { sender.sendMessage("Игроки не найдены."); return; }
+        if (targets.isEmpty()) { sender.sendMessage("No players found."); return; }
         for (Player target : targets) {
             plugin.getRoleManager().set(target.getUniqueId(), role);
             if (role == Role.HUNTER) plugin.getCompassManager().ensure(target);
             else plugin.getCompassManager().removeAll(target);
             plugin.getTabManager().update(target);
-            target.sendMessage(plugin.color("&aВаша роль: &f" + role.name().toLowerCase(Locale.ROOT)));
+            target.sendMessage(plugin.color("&aYour role: &f" + role.name().toLowerCase(Locale.ROOT)));
         }
-        sender.sendMessage(plugin.color("&aРоль применена к игрокам: &f" + targets.size()));
+        sender.sendMessage(plugin.color("&aRole applied to players: &f" + targets.size()));
     }
 
     private void reset(CommandSender sender, String[] args) {
@@ -63,7 +63,7 @@ public final class MHCommand implements CommandExecutor, TabCompleter {
         Long seed = null;
         if (args.length >= 2) {
             try { seed = Long.parseLong(args[1]); }
-            catch (NumberFormatException exception) { sender.sendMessage("Seed должен быть целым числом."); return; }
+            catch (NumberFormatException exception) { sender.sendMessage("Seed must be an integer."); return; }
         }
         final Long selectedSeed = seed;
         Bukkit.getScheduler().runTask(plugin, () -> plugin.getResetManager().reset(selectedSeed));
@@ -73,26 +73,26 @@ public final class MHCommand implements CommandExecutor, TabCompleter {
         if (!sender.hasPermission("mhfeatures.admin.role")) { deny(sender); return; }
         String selector = args.length >= 2 ? args[1] : "@s";
         List<Player> targets = select(sender, selector);
-        if (targets.isEmpty()) { sender.sendMessage("Игроки не найдены."); return; }
+        if (targets.isEmpty()) { sender.sendMessage("No players found."); return; }
         for (Player target : targets) plugin.getCompassManager().ensure(target);
-        sender.sendMessage(plugin.color("&aМэнхант-компас выдан игрокам: &f" + targets.size()));
+        sender.sendMessage(plugin.color("&aManhunt Compass given to players: &f" + targets.size()));
     }
 
     private void teleport(CommandSender sender, String[] args, boolean toMh) {
         if (!sender.hasPermission(toMh ? "mhfeatures.admin.mhworld" : "mhfeatures.admin.ogworld")) { deny(sender); return; }
         String selector = args.length >= 2 ? args[1] : "@s";
         List<Player> targets = select(sender, selector);
-        if (targets.isEmpty()) { sender.sendMessage("Игроки не найдены."); return; }
+        if (targets.isEmpty()) { sender.sendMessage("No players found."); return; }
         World world = toMh ? plugin.getWorldManager().getOverworld() : Bukkit.getWorld(plugin.getWorldManager().originalName());
-        if (world == null) { sender.sendMessage("Целевой мир не найден."); return; }
+        if (world == null) { sender.sendMessage("Target world not found."); return; }
         for (Player target : targets) target.teleport(world.getSpawnLocation());
-        sender.sendMessage(plugin.color("&aПеремещено игроков: &f" + targets.size()));
+        sender.sendMessage(plugin.color("&aPlayers moved: &f" + targets.size()));
     }
 
     private void status(CommandSender sender) {
         sender.sendMessage(plugin.color("&6MHFeatures 1.3.0 status"));
         sender.sendMessage("Platform API: version-specific Bukkit/Spigot/Paper build");
-        sender.sendMessage("Reset: " + (plugin.getResetManager().isResetting() ? "выполняется" : "не выполняется"));
+        sender.sendMessage("Reset: " + (plugin.getResetManager().isResetting() ? "running" : "not running"));
         sender.sendMessage("Worlds: " + (Bukkit.getWorld(plugin.getWorldManager().overworldName()) != null ? "Overworld " : "")
                 + (Bukkit.getWorld(plugin.getWorldManager().netherName()) != null ? "Nether " : "")
                 + (Bukkit.getWorld(plugin.getWorldManager().endName()) != null ? "End" : ""));
@@ -102,7 +102,7 @@ public final class MHCommand implements CommandExecutor, TabCompleter {
     private void reload(CommandSender sender) {
         if (!sender.hasPermission("mhfeatures.admin.reload")) { deny(sender); return; }
         plugin.reloadConfig();
-        sender.sendMessage(plugin.color("&aКонфигурация перезагружена."));
+        sender.sendMessage(plugin.color("&aConfiguration reloaded."));
     }
 
     private List<Player> select(CommandSender sender, String selector) {
@@ -138,7 +138,7 @@ public final class MHCommand implements CommandExecutor, TabCompleter {
         return exact == null ? Collections.<Player>emptyList() : Collections.singletonList(exact);
     }
 
-    private void deny(CommandSender sender) { sender.sendMessage(plugin.color("&cНедостаточно прав.")); }
+    private void deny(CommandSender sender) { sender.sendMessage(plugin.color("&cYou do not have permission.")); }
     private void help(CommandSender sender) { sender.sendMessage(plugin.color("&6/mhfeatures role|compass|reset|mhworld|ogworld|status|reload")); }
 
     @Override

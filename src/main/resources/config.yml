@@ -7,9 +7,9 @@ manhunt:
   seed: 0
   clear-ender-chest-on-reset: false
 compass:
-  name: '&6Мэнхант-компас'
+  name: '&6Manhunt Compass'
   hunter-only: true
-  message-no-target: 'Нет игроков для отслеживания.'
+  message-no-target: 'No players to track.'
   cooldown-ticks: 0
   ignore-vanished: true
 reset:
@@ -20,8 +20,8 @@ reset:
   clear-offhand: true
 tab:
   enabled: true
-  hunter-prefix: '&c[ОХОТНИК] &f'
-  runner-prefix: '&a[БЕГУЩИЙ] &f'
+  hunter-prefix: '&c[HUNTER] &f'
+  runner-prefix: '&a[RUNNER] &f'
   none-prefix: '&7'
 messages:
   prefix: '&8[&6Manhunt&8] &r'

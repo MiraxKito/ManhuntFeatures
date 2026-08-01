@@ -11,12 +11,12 @@ build/
 # Local Minecraft server files
 server/
 runtime/
-world/
-world_nether/
-world_the_end/
-world_mh/
-world_mh_nether/
-world_mh_the_end/
+/world/
+/world_nether/
+/world_the_end/
+/world_mh/
+/world_mh_nether/
+/world_mh_the_end/
 
 # Logs and generated plugin data
 logs/

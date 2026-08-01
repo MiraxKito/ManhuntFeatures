@@ -1,6 +1,6 @@
 # Manhunt Features
 
-Server-side Manhunt utilities for Minecraft Java Edition 1.16.1 and newer supported releases.
+Server-side Manhunt utilities for Minecraft Java Edition 1.16.1–1.21.4 supported releases.
 
 Manhunt Features adds hunter and runner roles, a named tracking compass, separate resettable Manhunt dimensions, player selectors, and automatic compass recovery for hunters.
 
@@ -26,10 +26,14 @@ This project publishes separate JAR files for different Minecraft generations:
 
 | File | Minecraft target | Server API | Java |
 |---|---|---|---|
-| `mhfeatures-1.3.0-1.16.1.jar` | 1.16.1 baseline | Bukkit/Spigot/Paper 1.16.1 | 8 or newer |
-| `mhfeatures-1.3.0-1.20.1.jar` | 1.20.1 baseline | Bukkit/Spigot/Paper 1.20.1 | 17 or newer |
+| `mhfeatures-1.3.1-1.16.1.jar` | 1.16.x | Bukkit/Spigot/Paper 1.16.1 | 8 or newer |
+| `mhfeatures-1.3.1-1.17.1.jar` | 1.17.x | Bukkit/Spigot/Paper 1.17.1 | 8 or newer |
+| `mhfeatures-1.3.1-1.18.2.jar` | 1.18.x | Bukkit/Spigot/Paper 1.18.2 | 8 or newer |
+| `mhfeatures-1.3.1-1.19.4.jar` | 1.19.x | Bukkit/Spigot/Paper 1.19.4 | 8 or newer |
+| `mhfeatures-1.3.1-1.20.1.jar` | 1.20.x | Bukkit/Spigot/Paper 1.20.1 | 17 or newer |
+| `mhfeatures-1.3.1-1.21.4.jar` | 1.21.x | Bukkit/Spigot/Paper 1.21.4 | 21 or newer |
 
-The 1.16.1 JAR is intended for the 1.16.1 generation and the 1.20.1 JAR is intended for the 1.20.1 generation. Do not install the 1.20.1 JAR on a 1.16.x server.
+Use the JAR matching your server's major Minecraft line. Do not install a JAR built for a newer major line on an older server.
 
 Paper is recommended for server performance, but both builds are compiled against the corresponding Spigot API and do not require Paper-only APIs.
 
@@ -125,8 +129,9 @@ tab:
 
 ## Compatibility and limitations
 
-- This release provides tested build targets for 1.16.1 and 1.20.1. Other versions in between require their matching build/API validation before being advertised as supported.
-- The plugin uses Bukkit/Spigot APIs; newer Minecraft versions require a separate compatibility pass.
+- This release provides separate build targets for the 1.16.x, 1.17.x, 1.18.x, 1.19.x, 1.20.x, and 1.21.x Minecraft lines.
+- Each artifact is compiled against the oldest Bukkit/Spigot API in its line and uses only APIs shared by the supported profiles.
+- Patch releases should normally work with their matching major/minor line, but server-platform behavior can vary between Spigot and Paper builds.
 - The player selector support intentionally covers the documented selectors only. It is not a full vanilla selector parser with every possible filter.
 - World generation can still be expensive. The staged reset prevents the plugin from blocking an already-running server during generation, but startup may take time while the server prepares the new worlds.
 - The plugin does not automatically determine a winner or end a Manhunt match.

@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.3.1 — Minecraft 1.16.1–1.21.4 builds
+
+Added:
+
+- Separate versioned JARs for Minecraft 1.16.1, 1.17.1, 1.18.2, 1.19.4, 1.20.1, and 1.21.4.
+- Java 8 bytecode for the 1.16.x–1.19.x builds.
+- Java 17 bytecode for the 1.20.1 build.
+- Java 21 bytecode for the 1.21.4 build.
+- Version-specific `plugin.yml` API metadata for every modern build.
+- GitHub Actions builds all six JAR files.
+
 ## 1.3.0 — Multi-version builds
 
 Added:

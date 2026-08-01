@@ -2,7 +2,7 @@ name: MHFeatures
 version: '${version}'
 main: ru.kitoro.mhfeatures.MHFeaturesPlugin
 author: Kitoro
-description: Server-side Manhunt utilities for Minecraft 1.16.1
+description: Server-side Manhunt utilities for Minecraft 1.16.1 through 1.21.4
 commands:
   mhfeatures:
     description: Manhunt Features command

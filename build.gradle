@@ -29,13 +29,8 @@ tasks.register('compileMhLegacy', JavaCompile) {
 }
 
 tasks.register('processMhLegacyResources', Copy) {
-    from 'src/main/resources'
+    from 'src/main/resources/config.yml'
     into layout.buildDirectory.dir('resources/mhLegacy')
-    exclude('plugin.yml')
-    filesMatching('plugin-legacy.yml') {
-        rename { 'plugin.yml' }
-        expand(version: project.version + '-1.16.1')
-    }
 }
 
 tasks.register('mhLegacyJar', Jar) {
@@ -44,6 +39,10 @@ tasks.register('mhLegacyJar', Jar) {
     archiveVersion = project.version + '-1.16.1'
     from layout.buildDirectory.dir('classes/java/mhLegacy')
     from layout.buildDirectory.dir('resources/mhLegacy')
+    from('src/main/resources/plugin-legacy.yml') {
+        rename { 'plugin.yml' }
+        expand(version: project.version + '-1.16.1')
+    }
 }
 
 tasks.register('compileMhModern', JavaCompile) {

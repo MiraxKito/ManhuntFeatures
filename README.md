@@ -118,8 +118,8 @@ Example tab labels:
 ```yaml
 tab:
   enabled: true
-  hunter-prefix: '&c[ОХОТНИК] &f'
-  runner-prefix: '&a[БЕГУЩИЙ] &f'
+  hunter-prefix: '&c[Hunter] &f'
+  runner-prefix: '&a[Runner] &f'
   none-prefix: '&7'
 ```
 
@@ -131,25 +131,6 @@ tab:
 - World generation can still be expensive. The staged reset prevents the plugin from blocking an already-running server during generation, but startup may take time while the server prepares the new worlds.
 - The plugin does not automatically determine a winner or end a Manhunt match.
 
-## Russian
-
-Manhunt Features — серверный плагин для Minecraft 1.16.1+ с отдельными сборками под поколения версий. Он добавляет роли охотников и бегущих, специальный именной компас, отдельные миры мэнханта, сброс миров через перезапуск сервера и визуальные метки ролей в табе.
-
-Главные команды:
-
-```text
-/mhf role <игрок|селектор> <hunter|runner|clear>
-/mhf compass [игрок|селектор]
-/mhf reset [seed]
-/mhf mhworld [игрок|селектор]
-/mhf ogworld [игрок|селектор]
-/mhf status
-/mhf reload
-```
-
-Компас обновляет направление только после правого клика, показывает только стрелку и не выводит координаты бегущего. Обычный компас не работает.
-
-После `/mhf reset` нужно выполнить обычный restart сервера: так старые миры удаляются, а новые создаются без зависания Spigot watchdog.
 
 ## License
 

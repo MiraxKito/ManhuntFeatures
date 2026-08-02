@@ -1,0 +1,27 @@
+name: MHFeatures
+version: '${version}'
+main: ru.kitoro.mhfeatures.MHFeaturesPlugin
+author: Kitoro
+description: Server-side Manhunt utilities for Minecraft 1.16.1 through 1.21.4
+commands:
+  mhfeatures:
+    description: Manhunt Features command
+    usage: /mhfeatures <role|compass|reset|mhworld|ogworld|start|stop|status|config|reload>
+    aliases: [mhf]
+permissions:
+  mhfeatures.admin.role:
+    default: op
+  mhfeatures.admin.reset:
+    default: op
+  mhfeatures.admin.mhworld:
+    default: op
+  mhfeatures.admin.ogworld:
+    default: op
+  mhfeatures.admin.reload:
+    default: op
+  mhfeatures.admin.game:
+    default: op
+  mhfeatures.admin.config:
+    default: op
+  mhfeatures.use.compass:
+    default: true

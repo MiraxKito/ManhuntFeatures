@@ -1,0 +1,31 @@
+language: en
+
+original-world: world
+manhunt:
+  overworld: world_mh
+  nether: world_mh_nether
+  end: world_mh_the_end
+  seed-mode: random
+  seed: 0
+  clear-ender-chest-on-reset: false
+compass:
+  hunter-only: true
+  glow: true
+  cooldown-ticks: 0
+  ignore-vanished: true
+reset:
+  block-all-plugin-commands: true
+  teleport-to-original-spawn: true
+  clear-inventory: true
+  clear-armor: true
+  clear-offhand: true
+  recovery-seconds: 60
+game:
+  eliminated-runner-spectator: true
+tab:
+  enabled: true
+  hunter-prefix: '&c[HUNTER] &f'
+  runner-prefix: '&a[RUNNER] &f'
+  none-prefix: '&7'
+messages:
+  prefix: '&8[&6Manhunt&8] &r'

@@ -49,9 +49,28 @@ public final class ManhuntWorldManager {
             plugin.getLogger().severe("Manhunt world names must be unique and must not equal original-world.");
             return;
         }
+
+        ensureWorld(overworldName(), World.Environment.NORMAL);
+        ensureWorld(netherName(), World.Environment.NETHER);
+        ensureWorld(endName(), World.Environment.THE_END);
+
         if (Bukkit.getWorld(overworldName()) == null || Bukkit.getWorld(netherName()) == null || Bukkit.getWorld(endName()) == null) {
             plugin.getLogger().warning("Manhunt worlds are not fully initialized. Use /mhfeatures reset.");
         }
+    }
+
+    private void ensureWorld(String name, World.Environment environment) {
+        if (Bukkit.getWorld(name) != null) return;
+        Path folder = Bukkit.getWorldContainer().toPath().resolve(name);
+        if (!Files.isDirectory(folder)) return;
+
+        plugin.getLogger().info("Loading existing Manhunt world: " + name);
+        WorldCreator creator = new WorldCreator(name)
+                .environment(environment)
+                .type(WorldType.NORMAL)
+                .generateStructures(true);
+        World world = Bukkit.createWorld(creator);
+        if (world != null) markOwned(world);
     }
 
     /**

@@ -40,7 +40,7 @@ public final class ConfigMenu implements Listener {
         event.setCancelled(true);
         if (!(event.getWhoClicked() instanceof Player)) return;
         Player player = (Player) event.getWhoClicked();
-        if (plugin.getResetManager().isResetting() || plugin.getGameManager().isActive()) {
+        if (plugin.getResetManager().isResetPending() || plugin.getGameManager().isActive()) {
             player.closeInventory();
             player.sendMessage(plugin.message("config-locked"));
             return;

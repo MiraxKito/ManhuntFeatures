@@ -24,7 +24,9 @@ public final class MHCommand implements CommandExecutor, TabCompleter {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (args.length == 0) { help(sender); return true; }
-        if (plugin.getResetManager().isResetting() && plugin.getConfig().getBoolean("reset.block-all-plugin-commands", true)) {
+        if (plugin.getResetManager().isResetPending()
+                && !args[0].equalsIgnoreCase("status")
+                && plugin.getConfig().getBoolean("reset.block-all-plugin-commands", true)) {
             sender.sendMessage(plugin.message("commands-locked-reset"));
             return true;
         }
@@ -65,6 +67,7 @@ public final class MHCommand implements CommandExecutor, TabCompleter {
     private void reset(CommandSender sender, String[] args) {
         if (!sender.hasPermission("mhfeatures.admin.reset")) { deny(sender); return; }
         if (plugin.getGameManager().isActive()) { sender.sendMessage(plugin.message("stop-before-reset")); return; }
+        if (plugin.getResetManager().isResetPending()) { sender.sendMessage(plugin.message("reset-already-pending")); return; }
         Long seed = null;
         if (args.length >= 2) {
             try { seed = Long.parseLong(args[1]); }
@@ -121,7 +124,7 @@ public final class MHCommand implements CommandExecutor, TabCompleter {
     private void status(CommandSender sender) {
         sender.sendMessage(plugin.message("status-title"));
         sender.sendMessage(plugin.message("status-platform"));
-        sender.sendMessage(plugin.message(plugin.getResetManager().isResetting() ? "status-reset-running" : "status-reset-idle"));
+        sender.sendMessage(plugin.message(plugin.getResetManager().isResetPending() ? "status-reset-pending" : "status-reset-idle"));
         if (plugin.getGameManager().isActive()) {
             sender.sendMessage(plugin.message("status-game-running", "%seconds%", plugin.getGameManager().elapsedSeconds()));
         } else {
@@ -143,7 +146,7 @@ public final class MHCommand implements CommandExecutor, TabCompleter {
             sender.sendMessage(plugin.message("config-player-only"));
             return;
         }
-        if (plugin.getResetManager().isResetting() || plugin.getGameManager().isActive()) {
+        if (plugin.getResetManager().isResetPending() || plugin.getGameManager().isActive()) {
             sender.sendMessage(plugin.message("config-locked"));
             return;
         }

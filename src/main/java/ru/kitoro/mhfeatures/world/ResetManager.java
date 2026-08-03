@@ -24,6 +24,8 @@ public final class ResetManager {
 
     public boolean isResetting() { return resetting; }
 
+    public boolean isResetPending() { return resetting || Files.exists(pendingFile); }
+
     public void preparePendingReset() {
         if (!Files.exists(pendingFile)) return;
         try {
@@ -72,7 +74,6 @@ public final class ResetManager {
                 clearInventory(player);
             }
             plugin.broadcast(plugin.messageRaw("reset-saved"));
-            resetting = false;
         } catch (IOException exception) {
             resetting = false;
             plugin.getLogger().severe("Could not schedule reset: " + exception.getMessage());

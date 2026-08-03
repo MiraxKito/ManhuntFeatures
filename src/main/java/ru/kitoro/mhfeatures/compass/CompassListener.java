@@ -21,7 +21,7 @@ public final class CompassListener implements Listener {
         if (event.getAction() != org.bukkit.event.block.Action.RIGHT_CLICK_AIR
                 && event.getAction() != org.bukkit.event.block.Action.RIGHT_CLICK_BLOCK) return;
         if (!event.getPlayer().hasPermission("mhfeatures.use.compass")) return;
-        if (plugin.getResetManager().isResetting()) return;
+        if (plugin.getResetManager().isResetPending()) return;
         if (plugin.getConfig().getBoolean("compass.hunter-only", true)
                 && plugin.getRoleManager().get(event.getPlayer().getUniqueId()) != Role.HUNTER) return;
 
